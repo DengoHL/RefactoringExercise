@@ -120,7 +120,7 @@ namespace RefactoringExercise
                 { 
                     Console.Write("How many hashtags (input ass a number of max 10)? ");
                     text = Console.ReadLine();
-                    if (int.TryParse(text ,out ))//added to check if input is in int format to prevent crash
+                    if (int.TryParse(text ,out times) )//added to check if input is in int format to prevent crash
                     { 
                         times = int.Parse(Console.ReadLine());
                         if (times < 0 || times > 10)
@@ -132,7 +132,7 @@ namespace RefactoringExercise
                             LoopEnd = true;
                         }
                     }
-                    else {  Console.WriteLine("input not in int format input must be a number like 1, 2, 3 and so on try again"}            
+                    else { Console.WriteLine("input not in int format input must be a number like 1, 2, 3 and so on try again"); }            
                 }
                 Console.WriteLine("");
                 return times;
