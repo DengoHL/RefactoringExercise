@@ -17,12 +17,23 @@ namespace RefactoringExercise
             //5- Ge feedback till användaren. Om den skriver fel ska den få veta varför.
             
             int answer = -1;
-
+            
+            
             while (answer != 0)
             {
+                bool loop = true;
+                string tex = "";
+                while (loop) 
+                { 
                 Console.Clear();
                 Console.WriteLine("What do you want to do?\n 1. A line\n 2. My Line\n 3. A Square\n 4. My Square\n 5. A border\n 6. My border\n 0. Exit");
-                answer = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Input must be a nummber like 1, 2, 3 and so on");
+                    tex = Console.ReadLine();
+                    if (int.TryParse(tex, out answer))//added to prevent crashing if user input anything other then an nummber
+                    {
+                        loop = false;
+                    }
+                }
 
                 //Example Comment
                 if (answer == 1)
@@ -80,7 +91,7 @@ namespace RefactoringExercise
                 {
                     string innerText="";
                     bool LoopEnd = false;
-                    while (LoopEnd == false)// while loop added to ensure the max rule is followed
+                    while (!LoopEnd)// while loop added to ensure the max rule is followed
                     {
                         Console.WriteLine("Write a text of max 20 characters long:");
                         innerText = Console.ReadLine();
@@ -116,13 +127,12 @@ namespace RefactoringExercise
                 int times = 0;
                 bool LoopEnd = false;
                 string text = "";
-                while (LoopEnd == false) // while loop added to ensure the max rule is followed
+                while (!LoopEnd) // while loop added to ensure the max rule is followed
                 { 
                     Console.Write("How many hashtags (input ass a number of max 10)? ");
                     text = Console.ReadLine();
                     if (int.TryParse(text ,out times) )//added to check if input is in int format to prevent crash
-                    { 
-                        times = int.Parse(Console.ReadLine());
+                    { //removed parse as it was causing bugs and was unnesesery
                         if (times < 0 || times > 10)
                         {
                             Console.WriteLine("input above the max of 10 or below 0 try again");
@@ -134,7 +144,7 @@ namespace RefactoringExercise
                     }
                     else { Console.WriteLine("input not in int format input must be a number like 1, 2, 3 and so on try again"); }            
                 }
-                Console.WriteLine("");
+                Blank();
                 return times;
             }
              void Blank() //added to all the onces below to prevent dublicate code
