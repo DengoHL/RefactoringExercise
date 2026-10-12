@@ -68,12 +68,12 @@ namespace RefactoringExercise
                     Blank();
                     for (int i = 0; i < 17; i++)
                     {
-                        SpacedHashtag();
+                        Hashtag();
                     }
                     Console.WriteLine("\n# Static Border #");
                     for (int i = 0; i < 17; i++)
                     {
-                        SpacedHashtag();
+                        Hashtag();
                     }
                 }
                 else if(answer == 6)
@@ -84,9 +84,9 @@ namespace RefactoringExercise
                     {
                         Console.WriteLine("Write a text of max 20 characters long:");
                         innerText = Console.ReadLine();
-                        if (innerText.Length < 0 || innerText.Length > 20)
+                        if ( string.IsNullOrEmpty(innerText)  || innerText.Length > 20) // changed for check if input is null to prevent crash
                         {
-                            Console.WriteLine("input above the max of 20 or below 0 try again");
+                            Console.WriteLine("input above the max of 20 or empty try again");
                         }
                         else { LoopEnd = true; }
                     }
@@ -111,39 +111,45 @@ namespace RefactoringExercise
                 Console.ReadKey();
                 
             }
-            static int Hashtags() //this solves duplicate code
+             int Hashtags() //this solves duplicate code
             {
                 int times = 0;
                 bool LoopEnd = false;
+                string text = "";
                 while (LoopEnd == false) // while loop added to ensure the max rule is followed
                 { 
-                    Console.Write("How many hashtags (input an number max 10)? ");
-                     times = int.Parse(Console.ReadLine());
-                    if (times < 0 || times > 10)
-                    {
-                        Console.WriteLine("input above the max of 10 or below 0 try again");
+                    Console.Write("How many hashtags (input ass a number of max 10)? ");
+                    text = Console.ReadLine();
+                    if (int.TryParse(text ,out ))//added to check if input is in int format to prevent crash
+                    { 
+                        times = int.Parse(Console.ReadLine());
+                        if (times < 0 || times > 10)
+                        {
+                            Console.WriteLine("input above the max of 10 or below 0 try again");
+                        }
+                        else
+                        {
+                            LoopEnd = true;
+                        }
                     }
-                    else
-                    {
-                        LoopEnd = true;
-                    }                   
+                    else {  Console.WriteLine("input not in int format input must be a number like 1, 2, 3 and so on try again"}            
                 }
                 Console.WriteLine("");
                 return times;
             }
-            static void Blank() //added to all the onces below to prevent dublicate code
+             void Blank() //added to all the onces below to prevent dublicate code
             {
                 Console.WriteLine("");
             }
-            static void SpacedHashtag() 
+             void SpacedHashtag() 
             {
                 Console.Write(" # ");
             }
-            static void Hashtag()
+             void Hashtag()
             {
                 Console.Write("#");
             }
-            static void DoubleHashtag()
+             void DoubleHashtag()
             {
                 Console.Write("##");
             }
